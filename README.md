@@ -6,12 +6,20 @@
 ## Установка
 Клонируйте репозиторий: <br>
    git clone https://github.com/yourusername/music_app.git  <br>
+
+   
 Создайте виртуальное окружение:  <br>
    python -m venv venv <br>
+
+   
 Установите зависимости: <br>
    pip install -r requirements.txt <br>
+
+   
 Запустите сервер: <br>
 python manage.py runserver <br>
+
+
 Модели <br>
 Group — группа, её описание и изображение. <br>
 Album — альбом с песнями. <br>
