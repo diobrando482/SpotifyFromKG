@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Поиск</h1>
+    
+    <form method="get" action="{% url 'search' %}">
+        {% csrf_token %}
+        <label for="query">Поиск:</label>
+        <input type="text" id="query" name="query" value="{{ query }}">
+        <button type="submit">Найти</button>
+    </form>
+
+    {% if query %}
+        <h2>Результаты поиска для: "{{ query }}"</h2>
+
+        {% if groups %}
+            <h3>Группы</h3>
+            <ul>
+                {% for group in groups %}
+                    <li><a href="{% url 'group_detail' group.pk %}">{{ group.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет групп по запросу "{{ query }}"</p>
+        {% endif %}
+
+        {% if albums %}
+            <h3>Альбомы</h3>
+            <ul>
+                {% for album in albums %}
+                    <li><a href="{% url 'album_detail' album.pk %}">{{ album.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет альбомов по запросу "{{ query }}"</p>
+        {% endif %}
+
+        {% if songs %}
+            <h3>Песни</h3>
+            <ul>
+                {% for song in songs %}
+                    <li><a href="{% url 'song_detail' song.pk %}">{{ song.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет песен по запросу "{{ query }}"</p>
+        {% endif %}
+
+        {% if members %}
+            <h3>Участники</h3>
+            <ul>
+                {% for member in members %}
+                    <li><a href="{% url 'member_detail' member.pk %}">{{ member.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет участников по запросу "{{ query }}"</p>
+        {% endif %}
+    {% else %}
+        <p>Введите запрос для поиска</p>
+    {% endif %}
+{% endblock %}

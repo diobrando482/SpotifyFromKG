@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music app</title>
+  <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.css">
+</head>
+<body class="bg-dark text-light">
+
+  <div class="container mt-4">
+    <h1 class="display-4 text-center">{{ song.name }}</h1>
+    
+    <div class="mb-4">
+      <p>Группа: <a href="{% url 'group_detail' song.group.id %}" class="text-info">{{ song.group.name }}</a></p>
+      {% if song.album %}
+      <p>Альбом: <a href="{% url 'album_detail' song.album.id %}" class="text-info">{{ song.album.name }}</a></p>
+      {% endif %}
+      <p>Длительность: {{ song.duration }}</p>
+      <p>{{ song.description }}</p>
+    </div>
+
+    <h2 class="h3 mb-3">Текст песни</h2>
+    <p>{{ song.lyrics }}</p>
+
+    <h2 class="h3 mb-3">Прослушать песню</h2>
+    <audio controls class="w-100">
+      <source src="{{ song.audio_file.url }}" type="audio/mpeg">
+      Ваш браузер не поддерживает воспроизведение аудио.
+    </audio>
+
+    <div class="mt-4">
+      <a href="/" class="btn btn-outline-light">Назад на главную</a>
+    </div>
+  </div>
+
+</body>
+</html>

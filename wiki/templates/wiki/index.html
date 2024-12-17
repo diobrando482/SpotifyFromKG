@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music app</title>
+  <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.css">
+  <link rel="shortcut icon" href="https://www.logo.wine/a/logo/Spotify/Spotify-Icon-Black-Logo.wine.svg" type="image/x-icon">
+</head>
+<body class="bg-dark text-light">
+  <nav class="navbar navbar-light bg-light">
+    <img class="img-fluid w-25" src="{% static 'images/spotify.png' %}" alt="" style="margin: 0 auto;">
+  </nav>
+
+  <div class="container mt-4">
+    <h1 class="display-4 text-center">АРХИВ ПЕСЕН</h1>
+
+    <div class="mb-4">
+      <form method="get" action="{% url 'index' %}">
+        {% csrf_token %}
+        <div class="input-group">
+          <input type="text" name="query" class="form-control" placeholder="Поиск..." value="{{ query }}">
+          <button class="btn btn-outline-secondary" type="submit">Найти</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Результаты поиска -->
+    {% if query %}
+      <h2 class="h3">Результаты поиска для: "{{ query }}"</h2>
+      
+      <div class="mt-5">
+        <h2 class="h3">Исполнители</h2>
+        <ul class="list-group">
+          {% for group in groups %}
+          <li style="margin-top: 20px;" class="list-group-item">
+            <a style="text-decoration: none; color: aqua;" href="{% url 'group_detail' group.id %}" class="text-info">{{ group.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="mt-5">
+        <h2 class="h3">Альбомы</h2>
+        <ul class="list-group">
+          {% for album in albums %}
+          <li style="margin-top: 20px;" class="list-group-item">
+            <a style="text-decoration: none; color: aqua;" href="{% url 'album_detail' album.id %}" class="text-info">{{ album.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="mt-5">
+        <h2 class="h3">Песни</h2>
+        <ul class="list-group">
+          {% for song in songs %}
+          <li style="margin-top: 20px;" class="list-group-item">
+            <a style="text-decoration: none; color: white;" href="{% url 'song_detail' song.id %}" class="text-info">{{ song.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% else %}
+      <!-- Если запрос пустой, показываем последние записи -->
+      <div class="mt-5">
+        <h2 class="h3">Исполнители</h2>
+        <ul class="list-group">
+          {% for group in groups %}
+          <li style="margin-top: 20px;" class="list-group-item">
+            <a style="text-decoration: none; color: aqua;" href="{% url 'group_detail' group.id %}" class="text-info">{{ group.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="mt-5">
+        <h2 class="h3">Альбомы</h2>
+        <ul class="list-group">
+          {% for album in albums %}
+          <li style="margin-top: 20px;" class="list-group-item">
+            <a style="text-decoration: none; color: aqua;" href="{% url 'album_detail' album.id %}" class="text-info">{{ album.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="mt-5">
+        <h2 class="h3">Песни</h2>
+        <ul class="list-group">
+          {% for song in songs %}
+          <li style="margin-top: 20px;" class="list-group-item">
+            <a style="text-decoration: none; color: white;" href="{% url 'song_detail' song.id %}" class="text-info">{{ song.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+
+</body>
+</html>

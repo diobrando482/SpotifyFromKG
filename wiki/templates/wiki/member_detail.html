@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music app</title>
+  <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.css">
+</head>
+<body class="bg-dark text-light">
+
+  <div class="container mt-4">
+    <h1 class="display-4 text-center">{{ member.name }}</h1>
+
+    <div class="text-center mb-4">
+      <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="img-fluid rounded-circle" style="max-width: 300px;">
+    </div>
+
+    <div class="mb-4">
+      <p><strong>Роль:</strong> {{ member.role }}</p>
+      <p><strong>Дата рождения:</strong> {{ member.birth_date }}</p>
+    </div>
+
+    <h2 class="h3 mb-3">Биография</h2>
+    <p>{{ member.biography }}</p>
+
+    <p><strong>Группа:</strong> <a href="{% url 'group_detail' member.group.id %}" class="text-info">{{ member.group.name }}</a></p>
+
+    <div class="mt-4">
+      <a href="/" class="btn btn-outline-light">Назад на главную</a>
+    </div>
+  </div>
+
+</body>
+</html>
