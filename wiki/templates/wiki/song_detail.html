@@ -12,7 +12,7 @@
     <h1 class="display-4 text-center">{{ song.name }}</h1>
     
     <div class="mb-4">
-      <p>Группа: <a href="{% url 'group_detail' song.group.id %}" class="text-info">{{ song.group.name }}</a></p>
+      <p>Исполнители: <a href="{% url 'group_detail' song.group.id %}" class="text-info">{{ song.group.name }}</a></p>
       {% if song.album %}
       <p>Альбом: <a href="{% url 'album_detail' song.album.id %}" class="text-info">{{ song.album.name }}</a></p>
       {% endif %}
@@ -25,8 +25,8 @@
 
     <h2 class="h3 mb-3">Прослушать песню</h2>
     <audio controls class="w-100">
-      <source src="{{ song.audio_file.url }}" type="audio/mpeg">
-      Ваш браузер не поддерживает воспроизведение аудио.
+      ?<source src="{{ song.audio_file.url }}" type="audio/mpeg">
+      :Ваш браузер не поддерживает воспроизведение аудио.
     </audio>
 
     <div class="mt-4">

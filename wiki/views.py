@@ -3,9 +3,8 @@ from .models import Group, Album, Song, GroupMember
 from .forms import SearchForm
 
 def index(request):
-    """Главная страница с последними группами, альбомами и песнями."""
     
-    query = request.GET.get('query', '')  # Получаем запрос от пользователя
+    query = request.GET.get('query', '')  
     groups = albums = songs = []
 
     if query:
@@ -25,7 +24,6 @@ def index(request):
     })
 
 def group_detail(request, pk):
-    """Детальная страница группы."""
     group = get_object_or_404(Group, pk=pk)
     albums = group.albums.all()
     songs = group.songs.all()
