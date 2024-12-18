@@ -27,7 +27,6 @@
       </form>
     </div>
 
-    <!-- Результаты поиска -->
     {% if query %}
       <h2 class="h3">Результаты поиска для: "{{ query }}"</h2>
       
@@ -36,7 +35,7 @@
         <ul class="list-group">
           {% for group in groups %}
           <li style="margin-top: 20px;" class="list-group-item">
-            <a style="text-decoration: none; color: aqua;" href="{% url 'group_detail' group.id %}" class="text-info">{{ group.name }}</a>
+            <a style="text-decoration: none;" href="{% url 'group_detail' group.id %}" class="text-info">{{ group.name }}</a>
           </li>
           {% endfor %}
         </ul>
@@ -64,7 +63,6 @@
         </ul>
       </div>
     {% else %}
-      <!-- Если запрос пустой, показываем последние записи -->
       <div class="mt-5">
         <h2 class="h3">Исполнители</h2>
         <ul class="list-group">
